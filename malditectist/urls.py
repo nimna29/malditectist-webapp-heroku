@@ -16,6 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from api import views
+from django.views.generic import TemplateView
+from django.contrib.staticfiles.views import serve
+
 
 # Define URL patterns for the project
 urlpatterns = [
@@ -25,4 +28,6 @@ urlpatterns = [
     path('', include('api.urls')),
     # Define a URL pattern for the file upload function-based view
     path('api/upload/', views.upload_file),
+        path('', serve, kwargs={'path': 'index.html'}),
+    path('<path:path>', serve),
 ]

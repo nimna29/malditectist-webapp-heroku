@@ -32,7 +32,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'localhost',
-    'malditectist-webapp.herokuapp.com'
+    'malditectist-webapp.herokuapp.com',
+    '127.0.0.1'
 ]
 
 
@@ -60,7 +61,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = "malditectist.urls"
@@ -129,9 +130,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = "static/"
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+STATIC_URL = "djstatic/"
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'build'),
+]
+
 
 
 # Default primary key field type
@@ -143,6 +149,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000"
 ]
 
+# TODO: Make CORS_ALLOW_ALL_ORIGINS to Falso
 CORS_ALLOW_ALL_ORIGINS = True
 
 FILE_EXPIRATION = 900 # 15 minutes in seconds
