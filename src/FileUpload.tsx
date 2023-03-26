@@ -45,8 +45,11 @@ const FileUpload = () => {
         };
 
         try {
+            const isProduction = process.env.NODE_ENV === 'production';
+            const apiUrl = isProduction ? '/api/upload_file/' : 'http://localhost:8000/api/upload_file/';
+
             const response = await axios.post(
-                'http://localhost:8000/api/upload_file/',
+                apiUrl,
                 formData,
                 config
             );
