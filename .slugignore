@@ -1,0 +1,5 @@
+api/__pycache__
+__pycache__
+api/migrations/__pycache__
+malditectist/__pycache__
+node_modules
