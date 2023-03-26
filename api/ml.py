@@ -3,12 +3,12 @@ import pandas as pd
 import joblib
 import os
 import math
-import tensorflow.keras.models as models
+from keras.models import load_model
 from urllib.request import urlretrieve
 
 # Load the trained ml models
 rf_model = joblib.load('api/rf_model.joblib')
-nn_model = models.load_model('api/nn_model.h5')
+nn_model = load_model('api/nn_model.h5')
 
 # Load the StandardScaler object used to scale the training data
 scaler = joblib.load('api/scaler.joblib')
