@@ -4,7 +4,7 @@ from .ml import classify_file
 from rest_framework import status
 from rest_framework.decorators import api_view
 from firebase import bucket
-from datetime import timedelta
+from datetime import timedelta, datetime
 
 
 # Define a function-based view to handle file uploads
@@ -38,6 +38,9 @@ def upload_file(request):
     result = classify_file(file_url)
     if result is None:
         return Response({'error': 'Failed to classify file'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    
+    # Delete the uploaded file from Firebase Storage
+    blob.delete()
     
     # Return the result of the classification to the frontend
     return Response(result, status=status.HTTP_200_OK)
