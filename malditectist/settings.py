@@ -34,7 +34,8 @@ ALLOWED_HOSTS = [
     'localhost',
     'malditectist-webapp.herokuapp.com',
     '127.0.0.1',
-    'malditectist.com'
+    'malditectist.com',
+    'www.malditectist.com'
 ]
 
 
