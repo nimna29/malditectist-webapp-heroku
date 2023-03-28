@@ -9,7 +9,7 @@ interface MlResult {
     nn_prediction: string;
 }
 
-let fileSizeLimit: number = 30;
+let fileSizeLimit: number = Number(process.env.REACT_APP_FILE_SIZE_LIMIT) || 30;
 
 const FileUpload = () => {
     const [selectedFile, setSelectedFile] = useState<File | undefined>(undefined);
