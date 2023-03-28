@@ -2,6 +2,7 @@
 serviceAccountKey.json
 .vscode
 .env
+malditectist-heroku-firebase-service-account-key.json
 
 
 ## Ignore Visual Studio temporary files, build results, and
