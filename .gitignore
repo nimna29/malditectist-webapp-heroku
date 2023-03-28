@@ -3,6 +3,10 @@ serviceAccountKey.json
 .vscode
 .env
 malditectist-heroku-firebase-service-account-key.json
+env_heroku_config
+env_heroku_storage01_config
+malditectist-heroku-storage01-firebase-service-account-key.json
+malditectist-storage01-firebase-service-account-key.json
 
 
 ## Ignore Visual Studio temporary files, build results, and
