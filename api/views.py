@@ -1,11 +1,29 @@
 from datetime import timedelta
 import threading
+from concurrent.futures import ThreadPoolExecutor
 from django.core.cache import cache
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from .ml import classify_file
 from firebase import bucket
+from dotenv import load_dotenv
+import os
+from threading import Lock
+
+
+# Load environment variables from the .env file
+load_dotenv()
+
+# Read the MAX_WORKERS environment variable and convert it to an integer
+MAX_WORKERS = int(os.getenv('MAX_WORKERS', 5))
+
+# Use the MAX_WORKERS value when creating the ThreadPoolExecutor
+executor = ThreadPoolExecutor(max_workers=MAX_WORKERS)
+
+# Add a global counter and a Lock for thread safety
+active_threads_counter = 0
+counter_lock = Lock()
 
 
 @api_view(['POST'])
@@ -37,6 +55,9 @@ def process_large_file(file_url, result_id, blob):
     """
     Processes large files in a separate thread.
     """
+    global active_threads_counter
+    global counter_lock
+
     # Set a placeholder value in the cache to indicate that the file is being processed
     cache.set(result_id, "processing", 15 * 60)
 
@@ -49,12 +70,19 @@ def process_large_file(file_url, result_id, blob):
     # Delete the uploaded file from Firebase Storage
     blob.delete()
 
+    # Decrease the active threads counter
+    with counter_lock:
+        active_threads_counter -= 1
+
 
 @api_view(['POST'])
 def upload_large_file(request):
     """
     Handles the file upload and classification for large files.
     """
+    global active_threads_counter
+    global counter_lock
+
     # Get the file and unique_key from the request, and check for errors
     file, unique_key, errors = get_file_and_unique_key(request)
     if errors:
@@ -67,6 +95,12 @@ def upload_large_file(request):
 
     # Upload the file to Firebase Storage, and get the filename, blob, and signed URL
     filename, blob, file_url = upload_to_firebase(file, unique_key)
+
+    # Check if the number of active threads exceeds the MAX_WORKERS limit
+    with counter_lock:
+        if active_threads_counter >= MAX_WORKERS:
+            return Response({'error': 'Server is busy. Please try again later.'}, status=status.HTTP_503_SERVICE_UNAVAILABLE)
+        active_threads_counter += 1
 
     # Start processing the large file in a separate thread
     threading.Thread(target=process_large_file, args=(file_url, result_id, blob)).start()
@@ -91,7 +125,8 @@ def search_result(request, result_id):
     if isinstance(result, str) and result == "processing":
         return Response({'processing': True}, status=status.HTTP_200_OK)
 
-    # If the result is available, return it to the frontend
+    # If the result is available, delete it from the cache and return it to the frontend
+    cache.delete(result_id)
     return Response(result, status=status.HTTP_200_OK)
 
 
