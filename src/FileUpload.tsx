@@ -14,20 +14,13 @@ const FileUpload = () => {
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const [uniqueKey, setUniqueKey] = useState<string>(Date.now().toString());
     const [uploadProgress, setUploadProgress] = useState<number>(0);
-    const [resultId, setResultId] = useState<string | null>(null);
 
     const handleFileSelect = (file: File[]) => {
-        // Check if the file size is greater than 30MB
-        if (file[0].size > 30 * 1024 * 1024) {
-            setErrorMessage('File size is greater than 30MB. Please wait for the Result ID.');
-            setTimeout(() => setErrorMessage(null), 5000);
-        }
         setSelectedFile(file[0]);
         setErrorMessage(null);
         setMLResult(null);
         setUniqueKey(Date.now().toString());
         setUploadProgress(0);
-        setResultId(null);
     };
 
     const handleFileUpload = async () => {
@@ -65,50 +58,15 @@ const FileUpload = () => {
                 rf_probability: response.data.rf_probability,
                 nn_prediction: response.data.nn_prediction,
             });
-            setResultId(null);
         } catch (error: any) {
             console.error(error);
             if (error.response && error.response.status === 400) {
                 setErrorMessage(error.response.data.error);
-            } else if (error.response && error.response.status === 408) {
-                setResultId(error.response.data.result_id);
-                setErrorMessage('Process will take some time. This is your Result ID: ' + error.response.data.result_id + '');
             } else {
                 setErrorMessage('An error occurred while uploading the file.');
             }
         } finally {
             setUploadProgress(0);
-        }
-    };
-
-    const handleSearchResult = async () => {
-        if (!resultId) {
-            return;
-        }
-
-        try {
-            const isProduction = process.env.NODE_ENV === 'production';
-            const apiUrl = isProduction ? `/api/get_result/${resultId}/` : `http://localhost:8000/api/get_result/${resultId}/`;
-
-            const response = await axios.get(apiUrl);
-
-            if (response.status === 200) {
-                setMLResult({
-                    prediction: response.data.prediction,
-                    rf_probability: response.data.rf_probability,
-                    nn_prediction: response.data.nn_prediction,
-                });
-                setErrorMessage(null);
-            } else if (response.status === 202) {
-                setErrorMessage('Still Processing... Please try again later in a few seconds.');
-            }
-        } catch (error: any) {
-            console.error(error);
-            if (error.response && error.response.status === 404) {
-                setErrorMessage('Result not found. Please make sure the Result ID is correct.');
-            } else {
-                setErrorMessage('An error occurred while fetching the result.');
-            }
         }
     };
 
@@ -148,20 +106,8 @@ const FileUpload = () => {
                     </>
                 )}
             </div>
-            {!mlResult && resultId && (
-                <div>
-                    <input
-                        type="text"
-                        value={resultId}
-                        readOnly
-                        onClick={(e) => (e.target as HTMLInputElement).select()}
-                    />
-                    <button onClick={handleSearchResult}>Search Result</button>
-                </div>
-            )}
         </div>
     );
 };
 
 export default FileUpload;
-
