@@ -45,6 +45,7 @@ def upload_file(request):
     
     # Pass the file to the classify_file function for analysis
     try:
+        print("File Processing start in 1st try")
         # time.sleep(5)  # Sleep for 5 seconds to simulate a long processing time
         # raise TimeoutError("Simulated TimeoutError for testing purposes.")
         result = classify_file(file_url)
@@ -75,6 +76,7 @@ def upload_file(request):
 
 # Define a function to process and cache the result if TimeoutError occurs during file classification
 def process_and_cache_result(file_url, result_id, blob):
+    print("File Processing start in thread")
     result = classify_file(file_url)
     
     # Cache the result and its status for 15 minutes
