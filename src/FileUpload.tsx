@@ -17,6 +17,11 @@ const FileUpload = () => {
     const [resultId, setResultId] = useState<string | null>(null);
 
     const handleFileSelect = (file: File[]) => {
+        // Check if the file size is greater than 30MB
+        if (file[0].size > 30 * 1024 * 1024) {
+            setErrorMessage('File size is greater than 30MB. Please wait for the Result ID.');
+            setTimeout(() => setErrorMessage(null), 5000);
+        }
         setSelectedFile(file[0]);
         setErrorMessage(null);
         setMLResult(null);

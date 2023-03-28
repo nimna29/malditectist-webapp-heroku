@@ -8,7 +8,7 @@ from datetime import timedelta
 from django.core.cache import cache
 from threading import Thread
 from uuid import uuid4
-import time
+from django.core.files.uploadedfile import TemporaryUploadedFile
 
 
 # Define a function-based view to handle file uploads
@@ -43,11 +43,26 @@ def upload_file(request):
         expiration=timedelta(minutes=30), method='GET')
     print("Private URL Generated")
     
+    
+    # Check if the file size is greater than 30MB
+    if isinstance(file, TemporaryUploadedFile) and file.size > 30 * 1024 * 1024:
+        print("File is greater that 30MB")
+        # If the file size is greater than 30MB, trigger the process_and_cache_result function
+        result_id = str(uuid4())
+        cache.set(result_id + "_status", "processing", 1800)
+        thread = Thread(target=process_and_cache_result,
+                        args=(file_url, result_id, blob))
+        thread.start()
+
+        # Return a message to the frontend indicating that the process is still ongoing
+        return Response({
+            "message": f"Process will take some time. This is your Result ID: {result_id}", "result_id": result_id
+        }, status=status.HTTP_408_REQUEST_TIMEOUT)
+    
+    
     # Pass the file to the classify_file function for analysis
     try:
         print("File Processing start in 1st try")
-        # time.sleep(5)  # Sleep for 5 seconds to simulate a long processing time
-        # raise TimeoutError("Simulated TimeoutError for testing purposes.")
         result = classify_file(file_url)
         print("File Process Completed")
         if result is None:
