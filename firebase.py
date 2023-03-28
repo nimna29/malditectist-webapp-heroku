@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 load_dotenv()  # Load environment variables from the .env file
 
 
-# Read environment variables
+# Get vavlues from environment variables
 service_account_data = {
     "type": "service_account",
     "project_id": os.environ.get("FIREBASE_PROJECT_ID"),
