@@ -37,6 +37,15 @@ const FileUpload = () => {
             return;
         }
 
+        // Reset states when the user clicks the Upload button
+        setMLResult(null);
+        setErrorMessage(null);
+        setUniqueKey(Date.now().toString());
+        setUploadProgress(0);
+        setResultId(null);
+        setSearchResult(false);
+        setProcessing(false);
+
         const formData = new FormData();
         formData.append('file', selectedFile);
         formData.append('unique_key', uniqueKey);
@@ -70,7 +79,9 @@ const FileUpload = () => {
 
             const response = await axios.post(targetApiUrl, formData, config);
 
-            if (targetApiUrl === largeFileApiUrl) {
+            if (response.status === 503) {
+                setErrorMessage('Server is busy. Please try again later.');
+            } else if (targetApiUrl === largeFileApiUrl) {
                 setResultId(response.data.result_id);
             } else {
                 setMLResult({
@@ -83,7 +94,8 @@ const FileUpload = () => {
             console.error(error);
             if (error.response && error.response.status === 400) {
                 setErrorMessage(error.response.data.error);
-            } else {
+            } 
+            else {
                 setErrorMessage('An unknown error occurred while uploading the file.');
             }
         } finally {
@@ -148,12 +160,12 @@ const FileUpload = () => {
                 <>
                     <p>
                         The file size is more than {fileSizeLimit}MB. Therefore, it will take some time to process.
-                        <br/>
+                        <br />
                         Please click on the Search Result to view your result.
-                        <br/>
+                        <br />
                         Kindly ensure that you check your results within the next 15 minutes, as they will be removed after that.
                     </p>
-                    <br/>
+                    <br />
                     <input
                         type="text"
                         readOnly
