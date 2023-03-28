@@ -28,26 +28,33 @@ def upload_file(request):
     unique_key = request.data.get('unique_key')
     if unique_key is None:
         return Response({'error': 'Unique key not found in request.'}, status=status.HTTP_400_BAD_REQUEST)
+    
+    print("Start Uploading File")
 
     # Upload the file to Firebase Storage
     filename = f"{unique_key}_{file.name}"
     blob = bucket.blob(filename)
     blob.upload_from_file(file)
+    
+    print("File Uploaded to Firebase")
 
     # Get the private URL of the uploaded file
     file_url = blob.generate_signed_url(
         expiration=timedelta(minutes=30), method='GET')
+    print("Private URL Generated")
     
     # Pass the file to the classify_file function for analysis
     try:
         # time.sleep(5)  # Sleep for 5 seconds to simulate a long processing time
         # raise TimeoutError("Simulated TimeoutError for testing purposes.")
         result = classify_file(file_url)
+        print("File Process Completed")
         if result is None:
             return Response({'error': 'Failed to classify file'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         
         # Delete the uploaded file from Firebase Storage
         blob.delete()
+        print("File Deleted From Firebase")
         
         # Return the result of the classification to the frontend
         return Response(result, status=status.HTTP_200_OK)
