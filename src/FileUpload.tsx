@@ -10,6 +10,8 @@ interface MlResult {
 }
 
 let fileSizeLimit: number = Number(process.env.REACT_APP_FILE_SIZE_LIMIT) || 30;
+let uploadFileSizeLimit: number = Number(process.env.REACT_APP_UPLOAD_FILE_SIZE_LIMIT) || 150;
+
 
 const FileUpload = () => {
     const [selectedFile, setSelectedFile] = useState<File | undefined>(undefined);
@@ -30,6 +32,11 @@ const FileUpload = () => {
         setUploadProgress(0);
         setResultId(null);
         setSearchResult(false);
+
+        if (file[0].size > uploadFileSizeLimit * 1024 * 1024) {
+            setErrorMessage(`Upload file size exceeds the limit of ${uploadFileSizeLimit}MB.`);
+            return;
+        }
     };
 
     const handleFileUpload = async () => {
@@ -94,7 +101,7 @@ const FileUpload = () => {
             console.error(error);
             if (error.response && error.response.status === 400) {
                 setErrorMessage(error.response.data.error);
-            } 
+            }
             else {
                 setErrorMessage('An unknown error occurred while uploading the file.');
             }
