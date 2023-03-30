@@ -24,7 +24,7 @@ nav {
     width: 100%;
     max-width: 1290px;
     margin: 0 auto;
-    padding: 0 1%;
+    padding: 0 2%;
     padding-right: 2%;
     box-sizing: border-box;
 }
@@ -49,7 +49,7 @@ nav {
     background-image: url('https://raw.githubusercontent.com/nimna29/malditectist-assets/main/icons/menu-three-bars.png');
     background-size: contain;
     background-repeat: no-repeat;
-    margin: 5%;
+    margin: 2%;
 }
 
 .visually-hidden {
@@ -243,7 +243,7 @@ nav {
     box-sizing: border-box;
     width: 100%;
     max-width: 1080px;
-    height: 40vh;
+    height: 36vh;
     border: 3px dashed #fff;
     border-radius: 30px;
     margin-top: 40px;
@@ -277,6 +277,13 @@ nav {
 }
 
 
+/* Add file icon when a file is selected */
+
+.drop-zone__icon-and-text .add-file-icon.selected {
+    background-image: url('https://raw.githubusercontent.com/nimna29/malditectist-assets/main/icons/file-selected-icon.png');
+}
+
+
 /* Drop Zone Text */
 
 .drop-zone__text {
@@ -287,7 +294,7 @@ nav {
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
-    line-height: 24px;
+    line-height: 30px;
     color: #fff;
 }
 
@@ -297,4 +304,274 @@ nav {
 .drop-zone.hover {
     background-color: rgba(41, 170, 226, 0.205);
     transition: background-color 0.2s ease;
+}
+
+
+/* Drop Zone Selected */
+
+.drop-zone.selected {
+    background-color: rgba(41, 170, 226, 0.205);
+}
+
+
+/* Result Area */
+
+.result-area {
+    width: 96%;
+    max-width: 1290px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 14px;
+}
+
+
+/* Result */
+
+.result {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 39px;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+
+/* Result Box */
+
+.result-box {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1290px;
+    height: 370px;
+    border: 6px solid #353F53;
+    border-radius: 30px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+
+/* Result Box Content */
+
+.result-box-content {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    flex-direction: column;
+}
+
+
+/* info-icon in default page result content */
+
+.info-icon {
+    width: 70px;
+    height: 70px;
+    background-image: url('https://raw.githubusercontent.com/nimna29/malditectist-assets/main/icons/info-icon.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-bottom: 10px;
+}
+
+
+/* Upload A file To See The Result */
+
+.result-box-text {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    color: #FFFFFF;
+    margin-top: 0;
+}
+
+.result-title {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 39px;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.uploading-text {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    color: #FFFFFF;
+    margin-top: 0;
+}
+
+.process-text {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    color: #FFFFFF;
+    margin-top: 0;
+}
+
+.still-processing-text {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    text-align: center;
+    color: #009F10;
+    margin-top: 2;
+}
+
+.search-result-text {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    text-align: center;
+    color: #FFE600;
+    margin-top: 0;
+}
+
+
+/* Uploading and Processing icons */
+
+.spinner {
+    position: relative;
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    margin-bottom: 14px;
+}
+
+.spinner:before {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    margin-bottom: 14px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border-top: 5px solid #B5B2B2;
+    border-right: 5px solid transparent;
+    animation: spinner .6s linear infinite;
+}
+
+@keyframes spinner {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* Search Result Option */
+
+.search-result {
+    width: 100%;
+    max-width: 1290px;
+    margin: 0 auto;
+    margin-top: -10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-button {
+    width: 180px;
+    height: 40px;
+    background: #29ABE2;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    margin-left: 15px;
+}
+
+.search-button:hover {
+    background-color: #521CBA;
+    cursor: pointer;
+}
+
+.search-button:active {
+    background-color: #29ABE2;
+    cursor: pointer;
+}
+
+
+/* Warning icon */
+
+.warning-icon {
+    background-image: url('https://raw.githubusercontent.com/nimna29/malditectist-assets/main/icons/waring-icon-yellow.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 70px;
+    height: 70px;
+    margin-bottom: 10px;
+}
+
+.search-result-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+
+/* Warning Message */
+
+.error-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.error-icon {
+    width: 70px;
+    height: 70px;
+    background-image: url('https://raw.githubusercontent.com/nimna29/malditectist-assets/main/icons/error-icon.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-bottom: 10px;
+}
+
+.error-message-text {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    text-align: center;
+    color: #BB0000;
+    margin-top: 0;
 }

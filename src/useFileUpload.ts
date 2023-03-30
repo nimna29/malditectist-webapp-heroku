@@ -16,6 +16,7 @@ export const useFileUpload = () => {
     const [resultId, setResultId] = useState<string | null>(null);
     const [searchResult, setSearchResult] = useState<boolean>(false);
     const [processing, setProcessing] = useState<boolean>(false);
+    const [uploadButtonDisabled, setUploadButtonDisabled] = useState<boolean>(false);
 
 
     const handleFileSelect = (file: File[]) => {
@@ -29,7 +30,16 @@ export const useFileUpload = () => {
 
         if (file[0].size > uploadFileSizeLimit * 1024 * 1024) {
             setErrorMessage(`Upload file size exceeds the limit of ${uploadFileSizeLimit}MB.`);
+            setUploadButtonDisabled(true);
             return;
+        }
+        else{
+            setUploadButtonDisabled(false);
+        }
+
+        const addFileIcon = document.querySelector('.add-file-icon');
+        if (addFileIcon) {
+            addFileIcon.classList.add('selected');
         }
     };
 
@@ -152,5 +162,6 @@ export const useFileUpload = () => {
         handleFileUpload,
         handleSearchResult,
         fileSizeLimit,
+        uploadButtonDisabled,
     };
 };

@@ -3,7 +3,6 @@ import Dropzone from 'react-dropzone';
 import { useFileUpload } from './useFileUpload';
 import './styles.css';
 
-
 const FileUpload = () => {
     const {
         selectedFile,
@@ -17,6 +16,7 @@ const FileUpload = () => {
         handleFileUpload,
         handleSearchResult,
         fileSizeLimit,
+        uploadButtonDisabled,
     } = useFileUpload();
 
     const [isHovering, setIsHovering] = useState(false);
@@ -51,7 +51,7 @@ const FileUpload = () => {
                     <div className="file-select">
                         <div className="file-select__border">
                             <div className="dropzone-container">
-                                <button onClick={handleFileUpload} disabled={!selectedFile} className={`upload-button ${selectedFile ? 'active' : 'disabled'}`}>
+                                <button onClick={handleFileUpload} disabled={uploadButtonDisabled || !selectedFile} className={`upload-button ${selectedFile ? 'active' : 'disabled'}`}>
                                     <span className={`upload-icon ${selectedFile ? 'active' : 'disabled'}`} />
                                     Upload File
                                 </button>
@@ -59,15 +59,17 @@ const FileUpload = () => {
                                     onDragEnter={() => setIsHovering(true)}
                                     onDragLeave={() => setIsHovering(false)}>
                                     {({ getRootProps, getInputProps }) => (
-                                        <section className={`drop-zone ${isHovering ? 'hover' : ''}`}
+                                        <section className={`drop-zone ${isHovering ? 'hover' : ''} ${selectedFile ? 'selected' : ''}`}
                                             {...getRootProps()}>
                                             <input {...getInputProps()} />
                                             <div className="drop-zone__icon-and-text">
                                                 <div className="add-file-icon" />
                                                 {selectedFile ? (
-                                                    <p className="drop-zone__text">Selected file: {selectedFile.name}</p>
+                                                    <p className="drop-zone__text">Selected File: {selectedFile.name}</p>
                                                 ) : (
-                                                    <p className="drop-zone__text">Drag and drop a file here, or click to select a file</p>
+                                                    <p className="drop-zone__text">Drop a file here, or Click to select a file
+                                                        <br /> ( Only .exe files are supported )
+                                                    </p>
                                                 )}
                                             </div>
                                         </section>
@@ -76,48 +78,72 @@ const FileUpload = () => {
                             </div>
                         </div>
                     </div>
-                    {resultId && !searchResult && (
-                        <>
-                            <p>
-                                The file size is more than {fileSizeLimit}MB. Therefore, it will take some time to process.
-                                <br />
-                                Please click on the Search Result to view your result.
-                                <br />
-                                Kindly ensure that you check your results within the next 15 minutes, as they will be removed after that.
-                            </p>
-                            <br />
-                            <input
-                                type="text"
-                                readOnly
-                                value={resultId}
-                                style={{ marginRight: '10px' }}
-                            />
-                            <button onClick={handleSearchResult}>Search Result</button>
-                        </>
-                    )}
-                    {errorMessage && !processing && <p style={{ color: '#BB0000' }}>{errorMessage}</p>}
-                    {processing && <p style={{ color: '#29ABE2' }}>Still Processing...! Please wait for a few moments.</p>}
+                    <div className='result-area'>
+                        <p className='result-title'>Result</p>
+                        <div className='result-box'>
+                            {resultId && !searchResult && (
+                                <>
+                                    <div className='search-result-content'>
+                                        <span className='warning-icon' />
+                                        <p className='search-result-text'>
+                                            The file size is more than {fileSizeLimit}MB. Therefore, it will take some time to process.
+                                            <br />
+                                            Please click on the Search Result to view your result.
+                                            <br />
+                                            Kindly ensure that you check your results within the next 15 minutes, as they will be removed after that.
+                                        </p>
+                                    </div>
+                                    <div className='search-result'>
+                                        <div className='search-container'>
+                                            <button onClick={handleSearchResult} className='search-button'>Search Result</button>
+                                        </div>
+                                    </div>
+                                </>
+                            )}
+                            {errorMessage && !processing && (
+                                <div className='error-container'>
+                                    <span className='error-icon' />
+                                    <p className='error-message-text'>{errorMessage}</p>
+                                </div>
+                            )}
+                            {processing &&
+                                <p className='still-processing-text'>Still Processing...! Please wait for a few moment.</p>
+                            }
 
-                    <div>
-                        {uploadProgress === 100 ? (
-                            <p>Processing...!</p>
-                        ) : uploadProgress > 0 && (
-                            <p>Upload Progress: {uploadProgress}%</p>
-                        )}
-                        {mlResult && (
-                            <>
-                                <p>Prediction: {mlResult.prediction}</p>
-                                <p>Random Forest Probability: {mlResult.rf_probability}</p>
-                                <p>Neural Network Prediction: {mlResult.nn_prediction}</p>
-                                <p>
-                                    If the probability and prediction values are close to 100%, it indicates
-                                    that the file is a malware.
-                                    <br />
-                                    Conversely, if the probability and prediction values are below 85%, it
-                                    indicates that the file is not a malware and is a legitimate file.
-                                </p>
-                            </>
-                        )}
+                            {uploadProgress === 0 && !mlResult && !resultId && !errorMessage && (
+                                <div className='result-box-content'>
+                                    <span className='info-icon' /><br />
+                                    <p className='result-box-text'>Upload a file to see the Result</p>
+                                </div>
+                            )}
+
+                            {uploadProgress === 100 ? (
+                                <div className='result-box-content'>
+                                    <span className='spinner' />
+                                    <p className='process-text'>Processing...!</p>
+                                </div>
+                            ) : uploadProgress > 0 && (
+                                <div className='result-box-content'>
+                                    <span className='spinner' />
+                                    <p className='uploading-text'>Upload Progress: {uploadProgress}%</p>
+                                </div>
+                            )}
+
+                            {mlResult && (
+                                <>
+                                    <p>Prediction: {mlResult.prediction}</p>
+                                    <p>Random Forest Probability: {mlResult.rf_probability}</p>
+                                    <p>Neural Network Prediction: {mlResult.nn_prediction}</p>
+                                    <p>
+                                        If the probability and prediction values are close to 100%, it indicates
+                                        that the file is a malware.
+                                        <br />
+                                        Conversely, if the probability and prediction values are below 85%, it
+                                        indicates that the file is not a malware and is a legitimate file.
+                                    </p>
+                                </>
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>
