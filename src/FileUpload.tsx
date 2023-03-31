@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Dropzone from 'react-dropzone';
 import { useFileUpload } from './useFileUpload';
 import './styles.css';
@@ -17,9 +17,37 @@ const FileUpload = () => {
         handleSearchResult,
         fileSizeLimit,
         uploadButtonDisabled,
+        resultAreaRef,
     } = useFileUpload();
 
     const [isHovering, setIsHovering] = useState(false);
+
+    function calculateStrokeDasharray(value: string) {
+        const percentage = Math.round(parseFloat(value));
+        return `${percentage}, 100`;
+    }
+
+    function getStrokeColor(value: string) {
+        const percentage = Math.round(parseFloat(value));
+        if (percentage >= 90) {
+            return "#FF0000";
+        } else if (percentage >= 85 && percentage < 90) {
+            return "#E6D305";
+        } else {
+            return "#04D300";
+        }
+    }
+
+    useEffect(() => {
+        if ((uploadProgress >= 0 || errorMessage) && resultAreaRef.current) {
+            resultAreaRef.current.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+            });
+        }
+    }, [uploadProgress, errorMessage, resultAreaRef]);
+
+
 
     return (
         <>
@@ -78,7 +106,7 @@ const FileUpload = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='result-area'>
+                    <div className='result-area' ref={resultAreaRef}>
                         <p className='result-title'>Result</p>
                         <div className='result-box'>
                             {resultId && !searchResult && (
@@ -90,7 +118,7 @@ const FileUpload = () => {
                                             <br />
                                             Please click on the Search Result to view your result.
                                             <br />
-                                            Kindly ensure that you check your results within the next 15 minutes, as they will be removed after that.
+                                            Kindly ensure that you check your result within the next 15 minutes, as they will be removed after that.
                                         </p>
                                     </div>
                                     <div className='search-result'>
@@ -130,19 +158,76 @@ const FileUpload = () => {
                             )}
 
                             {mlResult && (
-                                <>
-                                    <p>Prediction: {mlResult.prediction}</p>
-                                    <p>Random Forest Probability: {mlResult.rf_probability}</p>
-                                    <p>Neural Network Prediction: {mlResult.nn_prediction}</p>
-                                    <p>
-                                        If the probability and prediction values are close to 100%, it indicates
-                                        that the file is a malware.
-                                        <br />
-                                        Conversely, if the probability and prediction values are below 85%, it
-                                        indicates that the file is not a malware and is a legitimate file.
-                                    </p>
-                                </>
+                                <div className="ml-result">
+                                    <div className="prediction-description">
+                                        <div className="legitimate-icon-text-area">
+                                            {mlResult.prediction === "Malware" ? (
+                                                <div className="malware-icon" />
+                                            ) : (
+                                                <div className="legitimate-icon" />
+                                            )}
+                                            <p className={
+                                                mlResult.prediction === "Malware"
+                                                    ? "malware-text"
+                                                    : "legitimate-text"
+                                            }>File is a {mlResult.prediction}</p>
+                                        </div>
+                                        <p className="description-text">
+                                            If the probability and prediction values are close to 100%, it indicates
+                                            that the file is a malware.
+                                            <br />
+                                            Conversely, if the probability and prediction values are below 85%, it
+                                            indicates that the file is not a malware and is a legitimate file.
+                                        </p>
+                                    </div>
+                                    <div className="center-divider"></div>
+                                    <div className="percentage-values-area">
+                                        <div className="rf-model-value-box">
+                                            <div className="single-chart">
+                                                <svg viewBox="0 0 36 36" className="circular-chart blue">
+                                                    <path className="circle-bg"
+                                                        d="M18 2.0845
+                                                        a 15.9155 15.9155 0 0 1 0 31.831
+                                                        a 15.9155 15.9155 0 0 1 0 -31.831"
+                                                    />
+                                                    <path
+                                                        className="circle"
+                                                        stroke={getStrokeColor(mlResult.rf_probability)}
+                                                        stroke-dasharray={calculateStrokeDasharray(mlResult.rf_probability)}
+                                                        d="M18 2.0845
+                                                        a 15.9155 15.9155 0 0 1 0 31.831
+                                                        a 15.9155 15.9155 0 0 1 0 -31.831"
+                                                    />
+                                                    <text x="18" y="20.35" className="percentage">{mlResult.rf_probability}</text>
+                                                </svg>
+                                            </div>
+                                            <p className="rf-text">Random Forest Model</p>
+                                        </div>
+                                        <div className="nn-model-value-box">
+                                            <div className="single-chart">
+                                                <svg viewBox="0 0 36 36" className="circular-chart blue">
+                                                    <path className="circle-bg"
+                                                        d="M18 2.0845
+                                                        a 15.9155 15.9155 0 0 1 0 31.831
+                                                        a 15.9155 15.9155 0 0 1 0 -31.831"
+                                                    />
+                                                    <path
+                                                        className="circle"
+                                                        stroke={getStrokeColor(mlResult.nn_prediction)}
+                                                        stroke-dasharray={calculateStrokeDasharray(mlResult.nn_prediction)}
+                                                        d="M18 2.0845
+                                                        a 15.9155 15.9155 0 0 1 0 31.831
+                                                        a 15.9155 15.9155 0 0 1 0 -31.831"
+                                                    />
+                                                    <text x="18" y="20.35" className="percentage">{mlResult.nn_prediction}</text>
+                                                </svg>
+                                            </div>
+                                            <p className="nn-text">Neural Network Model</p>
+                                        </div>
+                                    </div>
+                                </div>
                             )}
+
                         </div>
                     </div>
                 </div>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import axios, { AxiosRequestConfig } from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import { MlResult } from './MlResult';
@@ -17,6 +17,7 @@ export const useFileUpload = () => {
     const [searchResult, setSearchResult] = useState<boolean>(false);
     const [processing, setProcessing] = useState<boolean>(false);
     const [uploadButtonDisabled, setUploadButtonDisabled] = useState<boolean>(false);
+    const resultAreaRef = useRef<HTMLDivElement>(null);
 
 
     const handleFileSelect = (file: File[]) => {
@@ -163,5 +164,6 @@ export const useFileUpload = () => {
         handleSearchResult,
         fileSizeLimit,
         uploadButtonDisabled,
+        resultAreaRef,
     };
 };
