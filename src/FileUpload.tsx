@@ -39,13 +39,13 @@ const FileUpload = () => {
     }
 
     useEffect(() => {
-        if ((uploadProgress >= 0 || errorMessage) && resultAreaRef.current) {
-            resultAreaRef.current.scrollIntoView({
+        if (uploadProgress !== 0 || mlResult || resultId || errorMessage) {
+            resultAreaRef.current?.scrollIntoView({
                 behavior: 'smooth',
                 block: 'start',
             });
         }
-    }, [uploadProgress, errorMessage, resultAreaRef]);
+    }, [uploadProgress, mlResult, resultId, errorMessage, resultAreaRef]);
 
 
 
