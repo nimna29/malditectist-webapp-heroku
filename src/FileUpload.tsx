@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Dropzone from 'react-dropzone';
 import { useFileUpload } from './useFileUpload';
 import './styles.css';
+import CustomMenu from './CustomMenu';
 
 const FileUpload = () => {
     const {
@@ -21,6 +22,14 @@ const FileUpload = () => {
     } = useFileUpload();
 
     const [isHovering, setIsHovering] = useState(false);
+
+    // Add a new state for controlling the CustomMenu visibility
+    const [menuOpen, setMenuOpen] = useState(false);
+
+    // Function to toggle the CustomMenu
+    const toggleMenu = () => {
+        setMenuOpen(!menuOpen);
+    };
 
     function calculateStrokeDasharray(value: string) {
         const percentage = Math.round(parseFloat(value));
@@ -52,11 +61,12 @@ const FileUpload = () => {
     return (
         <>
             <div className='page-content'>
+                <CustomMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
                 <nav>
                     <a href="https://www.malditectist.com/" className="logo">
                         <span className="visually-hidden">MalDitectist Home</span>
                     </a>
-                    <div className="menu-icon"></div>
+                    <div className="menu-icon" onClick={toggleMenu}></div>
                 </nav>
                 <div className='top-content-area'>
                     <div className="steps-and-description">
