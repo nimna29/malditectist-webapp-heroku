@@ -161,19 +161,20 @@ const FileUpload = () => {
                                 <div className="ml-result">
                                     <div className="prediction-description">
                                         <div className="legitimate-icon-text-area">
-                                            {mlResult.prediction === "Malware" ? (
-                                                <div className="malware-icon" />
-                                            ) : (
-                                                <div className="legitimate-icon" />
-                                            )}
+                                            {mlResult.prediction === "Malware" || mlResult.prediction === "Uncertain (mostly Malware)"
+                                                ? (
+                                                    <div className="malware-icon" />
+                                                ) : (
+                                                    <div className="legitimate-icon" />
+                                                )}
                                             <p className={
-                                                mlResult.prediction === "Malware"
+                                                mlResult.prediction === "Malware" || mlResult.prediction === "Uncertain (mostly Malware)"
                                                     ? "malware-text"
                                                     : "legitimate-text"
                                             }>File is a {mlResult.prediction}</p>
                                         </div>
                                         <p className="description-text">
-                                            If the probability and prediction values are close to 100%, it indicates
+                                            If the prediction percentage values are close to 100%, it indicates
                                             that the file is a malware.
                                             <br />
                                             Conversely, if the probability and prediction values are below 85%, it
