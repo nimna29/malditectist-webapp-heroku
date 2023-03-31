@@ -241,6 +241,41 @@ const FileUpload = () => {
 
                         </div>
                     </div>
+                    <div className="about-the-project">
+                        <p className='topics'>Why Use MALDITECTIST ?</p>
+                        <p className="topics-content">
+                            This project aims to develop an AI and Machine Learning-based Malware Detection model to protect
+                            computer systems from malware attacks. The model will combine signature-based and anomaly-based
+                            detection techniques and will be trained using a unique classified dataset.
+                            This project aims to develop an AI and Machine Learning-based Malware Detection model to protect
+                            computer systems from malware attacks. The model will combine signature-based and anomaly-based
+                            detection techniques and will be trained using a unique classified dataset.
+                        </p>
+                        <p className='topics'>What is the importance of scanning files ?</p>
+                        <p className="topics-content">
+                            This project aims to develop an AI and Machine Learning-based Malware Detection model to protect
+                            computer systems from malware attacks. The model will combine signature-based and anomaly-based
+                            detection techniques and will be trained using a unique classified dataset.
+                            This project aims to develop an AI and Machine Learning-based Malware Detection model to protect
+                            computer systems from malware attacks. The model will combine signature-based and anomaly-based
+                            detection techniques and will be trained using a unique classified dataset.
+                        </p>
+                    </div>
+                    <div className="technologies-used">
+                        <div className="technologies-used-heading-text">Technologies Used</div>
+                        <div className="technologies-used-content-area">
+                            <div className="technologies-used-icon-area">
+                                <div className="heroku-logo"></div>
+                                <div className="python-logo"></div>
+                                <div className="django-logo"></div>
+                                <div className="anaconda-logo"></div>
+                                <div className="react-logo"></div>
+                                <div className="ts-logo"></div>
+                                <div className="firebase-logo"></div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </>
