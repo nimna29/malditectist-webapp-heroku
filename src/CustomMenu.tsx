@@ -1,3 +1,4 @@
+/* A React component for App Menu */
 import React from 'react';
 import './styles.css';
 

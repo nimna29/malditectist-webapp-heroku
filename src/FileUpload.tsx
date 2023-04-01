@@ -1,3 +1,8 @@
+/**
+ * The function is a React component that renders a file upload form and displays the result of the
+ * file upload.
+ * @returns The return value is a React component.
+ */
 import React, { useState, useEffect } from 'react';
 import Dropzone from 'react-dropzone';
 import { useFileUpload } from './useFileUpload';
@@ -18,6 +23,7 @@ const FileUpload = () => {
         handleFileUpload,
         handleSearchResult,
         fileSizeLimit,
+        uploadFileSizeLimit,
         uploadButtonDisabled,
         resultAreaRef,
         currentYear,
@@ -73,18 +79,24 @@ const FileUpload = () => {
                 <div className='top-content-area'>
                     <div className="steps-and-description">
                         <p className="steps-and-description__description">
-                            Malditectist is an innovative project that utilizes AI and Machine Learning to develop an advanced Malware Detection model.
+                            Welcome to Malditectist, an innovative project that utilizes AI and Machine Learning to develop an advanced Malware Detection model.
                             The model integrated signature-based and anomaly-based detection techniques and
                             was trained using a unique classified PE file dataset.
                             The project aims to provide a solution for computer systems to protect them from malware attacks.
                         </p>
                         <div className="steps-and-description__step steps-and-description__step--1">
                             <span className="steps-and-description__step-title">Step 1 : </span>
-                            <span className="steps-and-description__step-content">Select the file or drop the file</span>
+                            <span className="steps-and-description__step-content">Select or drop your file in the below area, 
+                            and click the "Upload File" button.</span>
                         </div>
                         <div className="steps-and-description__step steps-and-description__step--2">
                             <span className="steps-and-description__step-title">Step 2 : </span>
-                            <span className="steps-and-description__step-content">Upload the file and wait for the processing</span>
+                            <span className="steps-and-description__step-content">Please wait until the file is uploaded and the process is complete.</span>
+                        </div>
+                        <div className="steps-and-description__step steps-and-description__step--3">
+                            <span className="steps-and-description__step-title">Step 3 : </span>
+                            <span className="steps-and-description__step-content">Once the process is complete, 
+                            the result will be displayed under the "Result" section.</span>
                         </div>
                     </div>
                 </div>
@@ -109,7 +121,7 @@ const FileUpload = () => {
                                                     <p className="drop-zone__text">Selected File: {selectedFile.name}</p>
                                                 ) : (
                                                     <p className="drop-zone__text">Drop a file here, or Click to select a file
-                                                        <br /> ( Only .exe files are supported )
+                                                        <br /> ( Only .exe files up to {uploadFileSizeLimit}MB are supported )
                                                     </p>
                                                 )}
                                             </div>
@@ -129,7 +141,7 @@ const FileUpload = () => {
                                         <p className='search-result-text'>
                                             The file size is more than {fileSizeLimit}MB. Therefore, it will take some time to process.
                                             <br />
-                                            Please click on the Search Result to view your result.
+                                            Please click on the "Search Result" to view your result.
                                             <br />
                                             Kindly ensure that you check your result within the next 15 minutes, as they will be removed after that.
                                         </p>
@@ -184,7 +196,7 @@ const FileUpload = () => {
                                                 mlResult.prediction === "Malware" || mlResult.prediction === "Uncertain (mostly Malware)"
                                                     ? "malware-text"
                                                     : "legitimate-text"
-                                            }>File is a {mlResult.prediction}</p>
+                                            }>File is {mlResult.prediction}</p>
                                         </div>
                                         <p className="description-text">
                                             If the prediction percentage values are close to 100%, it indicates
@@ -244,23 +256,57 @@ const FileUpload = () => {
                         </div>
                     </div>
                     <div className="about-the-project">
-                        <p className='topics'>Why Use MALDITECTIST ?</p>
+                        <p className='topics'>What is MALDITECTIST ?</p>
                         <p className="topics-content">
-                            This project aims to develop an AI and Machine Learning-based Malware Detection model to protect
-                            computer systems from malware attacks. The model will combine signature-based and anomaly-based
-                            detection techniques and will be trained using a unique classified dataset.
-                            This project aims to develop an AI and Machine Learning-based Malware Detection model to protect
-                            computer systems from malware attacks. The model will combine signature-based and anomaly-based
-                            detection techniques and will be trained using a unique classified dataset.
+                        Malditectist is an advanced Malware Detection application that utilizes AI and Machine Learning 
+                        to identify known and unknown malware accurately. ML models use signature-based and anomaly-based 
+                        detection techniques and have been trained using a unique classified PE (Portable Excitable) file dataset. 
+                        Using Malditectist, users can protect their computer systems and networks from malware attacks and 
+                        reduce the risk of data breaches and IT operation disruptions.
+                        Please note that this research project application is hosted using Heroku's basic plan, 
+                        which may result in occasional service disruptions if the server bandwidth exceeds. 
+                        I apologize for any inconvenience this may cause. Additionally, Malditectist does not 
+                        store any user data on the servers. Files and result data will be deleted once the user 
+                        receives the results on the web page. The application does not collect any user data, ensuring complete user privacy.
+                        Malditectist is an open-source project; users can access the source code on 
+                        <a href="https://github.com/nimna29/malditectist-webapp-heroku" target="_blank" rel="noopener noreferrer"> GitHub</a> when it becomes available. 
+                        Thank you for considering Malditectist in your fight against malware.
                         </p>
                         <p className='topics'>What is the importance of scanning files ?</p>
                         <p className="topics-content">
-                            This project aims to develop an AI and Machine Learning-based Malware Detection model to protect
-                            computer systems from malware attacks. The model will combine signature-based and anomaly-based
-                            detection techniques and will be trained using a unique classified dataset.
-                            This project aims to develop an AI and Machine Learning-based Malware Detection model to protect
-                            computer systems from malware attacks. The model will combine signature-based and anomaly-based
-                            detection techniques and will be trained using a unique classified dataset.
+                        Scanning files is crucial in ensuring the safety and security of your computer system and network. 
+                        Malware can infiltrate your system through various channels, including email attachments, downloads, 
+                        and external storage devices. Once malware infects your system, it can cause significant damage, 
+                        including stealing personal data, destroying files, and compromising network security.
+                        By scanning your files with a reliable malware detection application like Malditectist, 
+                        you can identify any potential threats and prevent them from causing harm to your system. 
+                        The application uses advanced AI and Machine Learning techniques to detect malware with high accuracy, 
+                        reducing the risk of false positives and false negatives. It is important to scan all files, especially 
+                        those downloaded from the internet or received from an unknown source, to reduce the risk of malware infections. 
+                        Regularly scanning your files ensures the safety and security of your computer system and network. By doing so, 
+                        you can protect your personal and sensitive data, maintain the performance and efficiency of your system, 
+                        and prevent disruptions in your IT operations.
+                        </p>
+                        <p className='topics'>Limitations of This Research Project</p>
+                        <p className="topics-content">
+                        While Malditectist is an advanced Malware Detection application, 
+                        users should be aware of some limitations to this research project. 
+                        These limitations include:
+                        </p>
+                        <ul className="topics-content-points">
+                            <li>Currently, the application only supports Windows PE (Portable Executable) files.</li>
+                            <li>Heroku hosting service is limited to the Basic Plan, which may cause 
+                                occasional disruptions if the server bandwidth exceeds.</li>
+                            <li>File upload size is limited to 100MB because the app uses Firebase Free Plan, 
+                                which has only 1GB daily bandwidth.</li>
+                            <li>Sometimes Malditectist may give false results due to the limitations of the trained Portable Executables dataset. 
+                                The current dataset only included PE files in 2018, and the PE file structure has changed in recent years (2023). 
+                                The models will be retrained with new PE files and increased features to improve accuracy.</li>
+                        </ul>
+                        <p className="topics-content">
+                        It's important to note that while these limitations exist, 
+                        I am continuously working on improving the application's performance and accuracy. 
+                        Please provide feedback about the application. It will help to improve this application.
                         </p>
                     </div>
                     <div className="technologies-used">

@@ -155,8 +155,8 @@ nav {
     position: relative;
     width: 95%;
     height: auto;
-    margin-top: 20px;
-    margin-bottom: 40px;
+    margin-top: 2%;
+    margin-bottom: 3%;
     font-style: normal;
     font-weight: 280;
     font-size: 18px;
@@ -167,26 +167,27 @@ nav {
 .steps-and-description__step {
     position: relative;
     width: 100%;
-    height: 48px;
+    height: 2%;
     margin-bottom: 20px;
+    margin-left: 1%;
 }
 
 .steps-and-description__step--1 {
-    margin-top: 40px;
+    margin-top: 0%;
 }
 
 .steps-and-description__step--2 {
-    margin-top: 20px;
+    margin-top: 0%;
 }
 
 .steps-and-description__step--3 {
-    margin-top: 20px;
+    margin-top: 0%;
 }
 
 .steps-and-description__step-title {
     font-style: normal;
     font-weight: 600;
-    font-size: 24px;
+    font-size: 22px;
     line-height: 29px;
     color: #FFFFFF;
 }
@@ -195,7 +196,7 @@ nav {
     font-style: normal;
     font-weight: 280;
     font-size: 20px;
-    line-height: 24px;
+    line-height: 26px;
     color: #FFFFFF;
 }
 
@@ -856,7 +857,32 @@ nav {
     font-style: normal;
     font-weight: 280;
     font-size: 18px;
-    line-height: 24px;
+    line-height: 30px;
+    color: #FFFFFF;
+}
+
+.topics-content a {
+    color: #ffffff;
+    opacity: 0.5;
+    text-decoration: none;
+}
+
+.topics-content a:hover {
+    color: #FFFFFF;
+    opacity: 1;
+}
+
+.topics-content-points {
+    position: relative;
+    width: 95%;
+    left: 10px;
+    height: auto;
+    margin-top: 6px;
+    margin-bottom: 10px;
+    font-style: normal;
+    font-weight: 280;
+    font-size: 18px;
+    line-height: 30px;
     color: #FFFFFF;
 }
 

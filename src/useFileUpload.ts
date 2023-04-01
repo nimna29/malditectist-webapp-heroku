@@ -1,3 +1,4 @@
+/* A custom hook that is used to upload files to the server, and get the result.*/
 import { useState, useRef } from 'react';
 import axios, { AxiosRequestConfig } from 'axios';
 import { v4 as uuidv4 } from 'uuid';
@@ -167,6 +168,7 @@ export const useFileUpload = () => {
         handleFileUpload,
         handleSearchResult,
         fileSizeLimit,
+        uploadFileSizeLimit,
         uploadButtonDisabled,
         resultAreaRef,
         currentYear,
