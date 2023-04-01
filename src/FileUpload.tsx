@@ -4,6 +4,7 @@ import { useFileUpload } from './useFileUpload';
 import './styles.css';
 import CustomMenu from './CustomMenu';
 
+
 const FileUpload = () => {
     const {
         selectedFile,
@@ -22,15 +23,13 @@ const FileUpload = () => {
         currentYear,
     } = useFileUpload();
 
+
     const [isHovering, setIsHovering] = useState(false);
-
-    // Add a new state for controlling the CustomMenu visibility
     const [menuOpen, setMenuOpen] = useState(false);
-
-    // Function to toggle the CustomMenu
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
     };
+
 
     function calculateStrokeDasharray(value: string) {
         const percentage = Math.round(parseFloat(value));
@@ -48,6 +47,7 @@ const FileUpload = () => {
         }
     }
 
+
     useEffect(() => {
         if (uploadProgress !== 0 || mlResult || resultId || errorMessage) {
             resultAreaRef.current?.scrollIntoView({
@@ -56,6 +56,7 @@ const FileUpload = () => {
             });
         }
     }, [uploadProgress, mlResult, resultId, errorMessage, resultAreaRef]);
+
 
 
 
@@ -72,9 +73,10 @@ const FileUpload = () => {
                 <div className='top-content-area'>
                     <div className="steps-and-description">
                         <p className="steps-and-description__description">
-                            This project aims to develop an AI and Machine Learning-based Malware Detection model to protect
-                            computer systems from malware attacks. The model will combine signature-based and anomaly-based
-                            detection techniques and will be trained using a unique classified dataset.
+                            Malditectist is an innovative project that utilizes AI and Machine Learning to develop an advanced Malware Detection model.
+                            The model integrated signature-based and anomaly-based detection techniques and
+                            was trained using a unique classified PE file dataset.
+                            The project aims to provide a solution for computer systems to protect them from malware attacks.
                         </p>
                         <div className="steps-and-description__step steps-and-description__step--1">
                             <span className="steps-and-description__step-title">Step 1 : </span>
@@ -205,7 +207,7 @@ const FileUpload = () => {
                                                     <path
                                                         className="circle"
                                                         stroke={getStrokeColor(mlResult.rf_probability)}
-                                                        stroke-dasharray={calculateStrokeDasharray(mlResult.rf_probability)}
+                                                        strokeDasharray={calculateStrokeDasharray(mlResult.rf_probability)}
                                                         d="M18 2.0845
                                                         a 15.9155 15.9155 0 0 1 0 31.831
                                                         a 15.9155 15.9155 0 0 1 0 -31.831"
@@ -226,7 +228,7 @@ const FileUpload = () => {
                                                     <path
                                                         className="circle"
                                                         stroke={getStrokeColor(mlResult.nn_prediction)}
-                                                        stroke-dasharray={calculateStrokeDasharray(mlResult.nn_prediction)}
+                                                        strokeDasharray={calculateStrokeDasharray(mlResult.nn_prediction)}
                                                         d="M18 2.0845
                                                         a 15.9155 15.9155 0 0 1 0 31.831
                                                         a 15.9155 15.9155 0 0 1 0 -31.831"
@@ -239,7 +241,6 @@ const FileUpload = () => {
                                     </div>
                                 </div>
                             )}
-
                         </div>
                     </div>
                     <div className="about-the-project">
@@ -282,10 +283,10 @@ const FileUpload = () => {
                 <div className="follow-for-more">
                     <div className="follow-for-more-text">Follow For More Projects</div>
                     <div className="follow-for-more-icons">
-                        <a href="https://github.com/nimna29" className="github-logo">
+                        <a href="https://github.com/nimna29" className="github-logo" target="_blank" rel="noopener noreferrer">
                             <span className="visually-hidden">GitHub profile</span>
-                            </a>
-                        <a href="https://www.linkedin.com/in/nimna-niwarthana-4b7357207/" className="linkedin-logo">
+                        </a>
+                        <a href="https://www.linkedin.com/in/nimna-niwarthana-4b7357207/" className="linkedin-logo" target="_blank" rel="noopener noreferrer">
                             <span className="visually-hidden">LinkedIn profile</span>
                         </a>
                     </div>

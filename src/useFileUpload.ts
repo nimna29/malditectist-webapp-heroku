@@ -3,6 +3,7 @@ import axios, { AxiosRequestConfig } from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import { MlResult } from './MlResult';
 
+
 // File size limits
 let fileSizeLimit: number = Number(process.env.REACT_APP_FILE_SIZE_LIMIT) || 30;
 let uploadFileSizeLimit: number = Number(process.env.REACT_APP_UPLOAD_FILE_SIZE_LIMIT) || 150;
@@ -35,7 +36,7 @@ export const useFileUpload = () => {
             setUploadButtonDisabled(true);
             return;
         }
-        else{
+        else {
             setUploadButtonDisabled(false);
         }
 
@@ -150,6 +151,8 @@ export const useFileUpload = () => {
             }
         }
     };
+
+
 
     return {
         selectedFile,

@@ -893,10 +893,11 @@ nav {
 .technologies-used-content-area {
     width: 98.6%;
     max-width: 1290px;
-    height: 170px;
+    height: 100%;
     align-items: center;
     text-align: center;
     margin-left: 1%;
+    margin-bottom: 5%;
 }
 
 
@@ -995,11 +996,15 @@ nav {
 .footer {
     width: 100%;
     max-width: 1920px;
-    background: rgba(17, 22, 31, 0.792);
+    background: rgba(17, 22, 31, 0.80);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    border-top-width: 2px;
+    border-top-style: solid;
+    border-color: rgba(12, 17, 28, 0.568);
+    ;
 }
 
 
