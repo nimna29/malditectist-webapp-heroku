@@ -18,6 +18,7 @@ export const useFileUpload = () => {
     const [processing, setProcessing] = useState<boolean>(false);
     const [uploadButtonDisabled, setUploadButtonDisabled] = useState<boolean>(false);
     const resultAreaRef = useRef<HTMLDivElement>(null);
+    const currentYear = new Date().getFullYear();
 
 
     const handleFileSelect = (file: File[]) => {
@@ -165,5 +166,6 @@ export const useFileUpload = () => {
         fileSizeLimit,
         uploadButtonDisabled,
         resultAreaRef,
+        currentYear,
     };
 };
