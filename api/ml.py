@@ -107,7 +107,7 @@ def classify_file(file):
         rf_pred_value = proba[0][1]
         nn_pred_value = nn_prediction[0]
 
-        if rf_prediction[0] == 1 and proba[0][1] >= 0.80:
+        if rf_prediction[0] == 1 and proba[0][1] >= 0.85:
             if nn_prediction[0] >= 0.7:
                 return {
                     "prediction": "Malware",

@@ -1,7 +1,9 @@
-import { useState } from 'react';
+/* A custom hook that is used to upload files to the server, and get the result.*/
+import { useState, useRef } from 'react';
 import axios, { AxiosRequestConfig } from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import { MlResult } from './MlResult';
+
 
 // File size limits
 let fileSizeLimit: number = Number(process.env.REACT_APP_FILE_SIZE_LIMIT) || 30;
@@ -16,6 +18,9 @@ export const useFileUpload = () => {
     const [resultId, setResultId] = useState<string | null>(null);
     const [searchResult, setSearchResult] = useState<boolean>(false);
     const [processing, setProcessing] = useState<boolean>(false);
+    const [uploadButtonDisabled, setUploadButtonDisabled] = useState<boolean>(false);
+    const resultAreaRef = useRef<HTMLDivElement>(null);
+    const currentYear = new Date().getFullYear();
 
 
     const handleFileSelect = (file: File[]) => {
@@ -29,7 +34,16 @@ export const useFileUpload = () => {
 
         if (file[0].size > uploadFileSizeLimit * 1024 * 1024) {
             setErrorMessage(`Upload file size exceeds the limit of ${uploadFileSizeLimit}MB.`);
+            setUploadButtonDisabled(true);
             return;
+        }
+        else {
+            setUploadButtonDisabled(false);
+        }
+
+        const addFileIcon = document.querySelector('.add-file-icon');
+        if (addFileIcon) {
+            addFileIcon.classList.add('selected');
         }
     };
 
@@ -139,6 +153,8 @@ export const useFileUpload = () => {
         }
     };
 
+
+
     return {
         selectedFile,
         mlResult,
@@ -152,5 +168,9 @@ export const useFileUpload = () => {
         handleFileUpload,
         handleSearchResult,
         fileSizeLimit,
+        uploadFileSizeLimit,
+        uploadButtonDisabled,
+        resultAreaRef,
+        currentYear,
     };
 };
