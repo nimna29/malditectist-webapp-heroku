@@ -21,6 +21,7 @@ export const useFileUpload = () => {
     const [uploadButtonDisabled, setUploadButtonDisabled] = useState<boolean>(false);
     const resultAreaRef = useRef<HTMLDivElement>(null);
     const currentYear = new Date().getFullYear();
+    const [resultNotFoundError, setResultNotFoundError] = useState(false);
 
 
     const handleFileSelect = (file: File[]) => {
@@ -131,9 +132,14 @@ export const useFileUpload = () => {
 
             const response = await axios.get(apiUrl);
 
-            if (response.data.processing) {
+            if (response.status === 404) {
+                setResultNotFoundError(true);
+                setErrorMessage(null);
+                setProcessing(false);
+            } else if (response.data.processing) {
                 setProcessing(true); // Set processing to true when still processing
                 setErrorMessage(null); // Clear the error message
+                setResultNotFoundError(false);
             } else {
                 setMLResult({
                     prediction: response.data.prediction,
@@ -142,16 +148,16 @@ export const useFileUpload = () => {
                 });
                 setSearchResult(true);
                 setProcessing(false); // Set processing to false when done
+                setResultNotFoundError(false);
             }
         } catch (error: any) {
             console.error(error);
-            if (error.response && error.response.status === 404) {
-                setErrorMessage(error.response.data.error);
-            } else {
-                setErrorMessage('An unknown error occurred while fetching the result.');
-            }
+            setErrorMessage('An unknown error occurred while fetching the result.');
+            setProcessing(false);
+            setResultNotFoundError(false);
         }
     };
+
 
 
 
@@ -172,5 +178,6 @@ export const useFileUpload = () => {
         uploadButtonDisabled,
         resultAreaRef,
         currentYear,
+        resultNotFoundError,
     };
 };
