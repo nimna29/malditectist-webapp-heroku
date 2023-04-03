@@ -380,7 +380,7 @@ const FileUpload = () => {
                         <ul className="footer-menu-text">
                             <li><a href="https://www.malditectist.com/">HOME</a></li>
                             <li><a href="https://www.malditectist.com/">ABOUT</a></li>
-                            <li><a href="https://forms.gle/8xXmTnVY3yGbAVWP8">FEEDBACK</a></li>
+                            <li><a href="https://forms.gle/8xXmTnVY3yGbAVWP8" target="_blank" rel="noopener noreferrer">FEEDBACK</a></li>
                             <li><a href="https://www.malditectist.com/">TERMS & CONDITIONS</a></li>
                         </ul>
                     </nav>
