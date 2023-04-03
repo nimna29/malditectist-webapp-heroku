@@ -308,7 +308,7 @@ const FileUpload = () => {
                             receives the results on the web page. The application does not collect any user data, ensuring complete user privacy.
                             Malditectist is an open-source project; users can access the source code on
                             <a href="https://github.com/nimna29/malditectist-webapp-heroku" target="_blank" rel="noopener noreferrer"> GitHub</a> when it becomes available.
-                            Thank you for considering Malditectist in your fight against malware.
+                            Thank you for considering MalDitectist in your fight against malware.
                         </p>
                         <p className='topics'>What is the importance of scanning files ?</p>
                         <p className="topics-content">
