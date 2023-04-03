@@ -30,7 +30,7 @@ const CustomMenu: React.FC<CustomMenuProps> = ({ isOpen, onClose }) => {
             <a href="https://www.malditectist.com/" className="menu-item" onClick={handleClose}>
               ABOUT
             </a>
-            <a href="https://www.malditectist.com/" className="menu-item" onClick={handleClose}>
+            <a href="https://forms.gle/8xXmTnVY3yGbAVWP8" className="menu-item" onClick={handleClose}>
               FEEDBACK
             </a>
             <a href="https://www.malditectist.com/" className="menu-item" onClick={handleClose}>
