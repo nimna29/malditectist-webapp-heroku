@@ -5,7 +5,6 @@ django-compat==1.0.15
 django-cors-headers==3.14.0
 djangorestframework==3.14.0
 firebase-admin==6.1.0
-gunicorn==20.1.0
 h5py==3.8.0
 joblib==1.2.0
 keras==2.11.0
@@ -18,5 +17,3 @@ python-dotenv==1.0.0
 scikit-learn==1.2.2
 seaborn==0.12.2
 tensorflow-cpu==2.11.1
-websocket-client==1.4.2
-whitenoise==6.4.0
