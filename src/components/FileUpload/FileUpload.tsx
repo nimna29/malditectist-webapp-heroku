@@ -5,10 +5,10 @@
  */
 import React, { useState, useEffect } from 'react';
 import Dropzone from 'react-dropzone';
-import { useFileUpload } from './useFileUpload';
-import './styles.css';
-import CustomMenu from './CustomMenu';
-import isMobile from './utils';
+import { useFileUpload } from '../hooks/useFileUpload';
+import './FileUpload.css';
+import CustomMenu from '../Menu/CustomMenu';
+import isMobile from '../utils/isMobile';
 
 
 

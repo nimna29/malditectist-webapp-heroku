@@ -2,7 +2,7 @@
 import { useState, useRef } from 'react';
 import axios, { AxiosRequestConfig } from 'axios';
 import { v4 as uuidv4 } from 'uuid';
-import { MlResult } from './MlResult';
+import { MlResult } from '../types/MlResult';
 
 
 // File size limits
