@@ -1,14 +1,11 @@
-/**
- * The function is a React component that renders a file upload form and displays the result of the
- * file upload.
- * @returns The return value is a React component.
- */
-import React, { useState, useEffect } from 'react';
 import Dropzone from 'react-dropzone';
 import { useFileUpload } from '../hooks/useFileUpload';
 import './FileUpload.css';
 import CustomMenu from '../Menu/CustomMenu';
 import isMobile from '../utils/isMobile';
+import { calculateStrokeDasharray, getStrokeColor } from '../utils/percentageCircle';
+import useMobileWarning from '../hooks/useMobileWarning';
+import useUIInteractions from '../hooks/useUIInteractions';
 
 
 
@@ -32,58 +29,21 @@ const FileUpload = () => {
         resultNotFoundError,
     } = useFileUpload();
 
+    const {
+        isHovering,
+        setIsHovering,
+        menuOpen,
+        setMenuOpen,
+        toggleMenu,
+    } = useUIInteractions({
+        uploadProgress,
+        mlResult,
+        resultId,
+        errorMessage,
+        resultAreaRef
+    });
 
-    const [isHovering, setIsHovering] = useState(false);
-    const [menuOpen, setMenuOpen] = useState(false);
-    const toggleMenu = () => {
-        setMenuOpen(!menuOpen);
-    };
-
-
-    function calculateStrokeDasharray(value: string) {
-        const percentage = Math.round(parseFloat(value));
-        return `${percentage}, 100`;
-    }
-
-    function getStrokeColor(value: string) {
-        const percentage = Math.round(parseFloat(value));
-        if (percentage >= 90) {
-            return "#FF0000";
-        } else if (percentage >= 85 && percentage < 90) {
-            return "#E6D305";
-        } else {
-            return "#04D300";
-        }
-    }
-
-
-    useEffect(() => {
-        if (uploadProgress !== 0 || mlResult || resultId || errorMessage) {
-            resultAreaRef.current?.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start',
-            });
-        }
-    }, [uploadProgress, mlResult, resultId, errorMessage, resultAreaRef]);
-
-
-    useEffect(() => {
-        const checkAndHideMessage = () => {
-            if (isMobile()) {
-                const mobileWarning = document.getElementById('mobile-warning');
-                if (mobileWarning) {
-                    window.addEventListener('resize', () => {
-                        if (window.innerWidth > 767) { // Assuming 767px as the breakpoint for desktop mode
-                            mobileWarning.classList.add('mobile-warning-hidden');
-                        } else {
-                            mobileWarning.classList.remove('mobile-warning-hidden');
-                        }
-                    });
-                }
-            }
-        };
-        checkAndHideMessage(); // Call the function to initialize the event listener
-    }, []);
+    useMobileWarning();
 
 
 
