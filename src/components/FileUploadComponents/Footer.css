@@ -1,0 +1,149 @@
+/* Footer */
+
+.footer {
+    width: 100%;
+    max-width: 1920px;
+    background: rgba(17, 22, 31, 0.80);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-top-width: 2px;
+    border-top-style: solid;
+    border-color: rgba(12, 17, 28, 0.568);
+    ;
+}
+
+
+/* Follow For More Projects Section */
+
+.follow-for-more {
+    width: 424px;
+    height: 125px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.follow-for-more-text {
+    width: 424px;
+    height: 41px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 40px;
+    text-align: center;
+    color: #FFFFFF;
+    margin-bottom: 2px;
+}
+
+.follow-for-more-icons {
+    width: 155px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.github-logo {
+    width: 30%;
+    height: 60%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url('https://raw.githubusercontent.com/nimna29/malditectist-assets/main/logos/mark-github.png');
+}
+
+.linkedin-logo {
+    width: 30%;
+    height: 65%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url('https://raw.githubusercontent.com/nimna29/malditectist-assets/main/logos/LinkedIn-logo.png');
+}
+
+.github-logo:hover {
+    transform: scale(1.1);
+}
+
+.linkedin-logo:hover {
+    transform: scale(1.1);
+}
+
+.end-of-footer {
+    width: 100%;
+    max-width: 1920px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-menu {
+    width: 90%;
+    max-width: 400px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.5%;
+}
+
+.footer-menu-text {
+    width: 100%;
+    max-width: 400px;
+    height: 15px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 340;
+    font-size: 12px;
+    text-align: center;
+    color: #FFFFFF;
+    opacity: 0.5;
+    display: flex;
+    justify-content: space-between;
+    padding: 0%;
+}
+
+.footer-end {
+    width: 100%;
+    max-width: 1920px;
+    height: 80px;
+    background: linear-gradient(118.92deg, #0c0a35 0.62%, #121342 100.62%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0%;
+}
+
+.footer-end-text {
+    width: 100%;
+    max-width: 500px;
+    height: 50%;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 164.02%;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    opacity: 0.5;
+    text-align: center;
+}
+
+.footer-menu-text li {
+    list-style: none;
+}
+
+.footer-menu-text a {
+    color: #FFFFFF;
+    opacity: 0.5;
+    text-decoration: none;
+}
+
+.footer-menu-text a:hover {
+    color: #FFFFFF;
+    opacity: 1;
+}
