@@ -1,0 +1,48 @@
+/* CSS for mobile message */
+
+.mobile-warning {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    margin-right: 3%;
+}
+
+.mobile-warning-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    padding: 2%;
+    background-color: #121721;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.warning-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 10px;
+    background-image: url('https://raw.githubusercontent.com/nimna29/malditectist-assets/main/icons/waring-icon-yellow.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.warning-text {
+    font-size: 14px;
+    text-align: center;
+    line-height: 1.4;
+    color: #FFE600;
+}
+
+.mobile-warning-hidden {
+    display: none;
+}

@@ -1,0 +1,65 @@
+/* Steps and Description Area */
+
+.top-content-area {
+    width: 100%;
+    max-width: 1272px;
+    margin: 0 auto;
+    padding-top: 0px;
+    padding-bottom: 25px;
+}
+
+.steps-and-description {
+    width: 100%;
+    max-width: 1272px;
+    margin: 0 auto;
+    padding: 0 3%;
+}
+
+.steps-and-description__description {
+    position: relative;
+    width: 95%;
+    height: auto;
+    margin-top: 2%;
+    margin-bottom: 3%;
+    font-style: normal;
+    font-weight: 280;
+    font-size: 18px;
+    line-height: 24px;
+    color: #FFFFFF;
+}
+
+.steps-and-description__step {
+    position: relative;
+    width: 100%;
+    height: 2%;
+    margin-bottom: 20px;
+    margin-left: 1%;
+}
+
+.steps-and-description__step--1 {
+    margin-top: 0%;
+}
+
+.steps-and-description__step--2 {
+    margin-top: 0%;
+}
+
+.steps-and-description__step--3 {
+    margin-top: 0%;
+}
+
+.steps-and-description__step-title {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 29px;
+    color: #FFFFFF;
+}
+
+.steps-and-description__step-content {
+    font-style: normal;
+    font-weight: 280;
+    font-size: 20px;
+    line-height: 26px;
+    color: #FFFFFF;
+}

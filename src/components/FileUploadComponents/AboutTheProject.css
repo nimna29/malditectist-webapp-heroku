@@ -1,0 +1,62 @@
+/* Why and What? Area */
+
+.about-the-project {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1272px;
+    margin: 0 auto;
+    padding: 0 3%;
+    margin-top: 2%;
+}
+
+.topics {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 39px;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.topics-content {
+    position: relative;
+    width: 95%;
+    left: 10px;
+    height: auto;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    font-style: normal;
+    font-weight: 280;
+    font-size: 18px;
+    line-height: 30px;
+    color: #FFFFFF;
+}
+
+.topics-content a {
+    color: #ffffff;
+    opacity: 0.5;
+    text-decoration: none;
+}
+
+.topics-content a:hover {
+    color: #FFFFFF;
+    opacity: 1;
+}
+
+.topics-content-points {
+    position: relative;
+    width: 95%;
+    left: 10px;
+    height: auto;
+    margin-top: 6px;
+    margin-bottom: 10px;
+    font-style: normal;
+    font-weight: 280;
+    font-size: 18px;
+    line-height: 30px;
+    color: #FFFFFF;
+}
