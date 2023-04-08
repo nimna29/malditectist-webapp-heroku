@@ -1,6 +1,6 @@
 /* A React component for App Menu */
 import React from 'react';
-import './styles.css';
+import './CutomeMenu.css';
 
 interface CustomMenuProps {
   isOpen: boolean;
