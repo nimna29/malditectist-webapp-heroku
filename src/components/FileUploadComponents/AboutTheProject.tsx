@@ -6,17 +6,17 @@ const AboutTheProject: React.FC = () => {
         <div className="about-the-project">
             <p className='topics'>What is MALDITECTIST ?</p>
             <p className="topics-content">
-                Malditectist is an advanced Malware Detection application that utilizes AI and Machine Learning
+                MalDitectist is an advanced Malware Detection application that utilizes AI and Machine Learning
                 to identify known and unknown malware accurately. ML models use signature-based and anomaly-based
                 detection techniques and have been trained using a unique classified PE (Portable Excitable) file dataset.
-                Using Malditectist, users can protect their computer systems and networks from malware attacks and
+                Using MalDitectist, users can protect their computer systems and networks from malware attacks and
                 reduce the risk of data breaches and IT operation disruptions.
                 Please note that this research project application is hosted using Heroku's basic plan,
                 which may result in occasional service disruptions if the server bandwidth exceeds.
-                I apologize for any inconvenience this may cause. Additionally, Malditectist does not
+                I apologize for any inconvenience this may cause. Additionally, MalDitectist does not
                 store any user data on the servers. Files and result data will be deleted once the user
                 receives the results on the web page. The application does not collect any user data, ensuring complete user privacy.
-                Malditectist is an open-source project; users can access the source code on
+                MalDitectist is an open-source project; users can access the source code on
                 <a href="https://github.com/nimna29/malditectist-webapp-heroku" target="_blank" rel="noopener noreferrer"> GitHub</a> when it becomes available.
                 Thank you for considering MalDitectist in your fight against malware.
             </p>
@@ -26,7 +26,7 @@ const AboutTheProject: React.FC = () => {
                 Malware can infiltrate your system through various channels, including email attachments, downloads,
                 and external storage devices. Once malware infects your system, it can cause significant damage,
                 including stealing personal data, destroying files, and compromising network security.
-                By scanning your files with a reliable malware detection application like Malditectist,
+                By scanning your files with a reliable malware detection application like MalDitectist,
                 you can identify any potential threats and prevent them from causing harm to your system.
                 The application uses advanced AI and Machine Learning techniques to detect malware with high accuracy,
                 reducing the risk of false positives and false negatives. It is important to scan all files, especially
@@ -37,7 +37,7 @@ const AboutTheProject: React.FC = () => {
             </p>
             <p className='topics'>Limitations of This Research Project</p>
             <p className="topics-content">
-                While Malditectist is an advanced Malware Detection application,
+                While MalDitectist is an advanced Malware Detection application,
                 users should be aware of some limitations to this research project.
                 These limitations include:
             </p>
@@ -47,7 +47,7 @@ const AboutTheProject: React.FC = () => {
                     occasional disruptions if the server bandwidth exceeds.</li>
                 <li>File upload size is limited to 100MB because the app uses Firebase Free Plan,
                     which has only 1GB daily bandwidth.</li>
-                <li>Sometimes Malditectist may give false results due to the limitations of the trained Portable Executables dataset.
+                <li>Sometimes MalDitectist may give false results due to the limitations of the trained Portable Executables dataset.
                     The current dataset only included PE files in 2018, and the PE file structure has changed in recent years (2023).
                     The models will be retrained with new PE files and increased features to improve accuracy.</li>
             </ul>

@@ -6,7 +6,7 @@ const TopContentArea: React.FC = () => {
         <div className='top-content-area'>
             <div className="steps-and-description">
                 <p className="steps-and-description__description">
-                    Welcome to Malditectist, an innovative project that utilizes AI and Machine Learning to develop an advanced Malware Detection model.
+                    Welcome to MalDitectist, an innovative project that utilizes AI and Machine Learning to develop an advanced Malware Detection model.
                     The model integrated signature-based and anomaly-based detection techniques and
                     was trained using a unique classified PE file dataset.
                     The project aims to provide a solution for computer systems to protect them from malware attacks.
