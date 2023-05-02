@@ -25,7 +25,7 @@ API_DIR = os.path.join(BASE_DIR, 'api')
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-k2f3lis9eivbj6i3$@jmf4)a$i^430ih)xcf6vl+@rb@yiu-f0"
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
