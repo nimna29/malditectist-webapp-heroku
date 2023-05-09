@@ -1,3 +1,4 @@
+import React from 'react';
 import Dropzone from 'react-dropzone';
 import { useFileUpload } from '../hooks/useFileUpload';
 import './FileUpload.css';
