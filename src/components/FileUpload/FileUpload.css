@@ -52,6 +52,11 @@ nav {
     background-repeat: no-repeat;
     margin: 2%;
     cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.menu-icon:hover {
+    transform: scale(1.2) rotate(180deg);
 }
 
 .visually-hidden {
