@@ -154,77 +154,83 @@ const FileUpload = () => {
                                 </div>
                             )}
 
-                            {mlResult && (
-                                <div className="ml-result">
-                                    <div className="prediction-description">
-                                        <div className="legitimate-icon-text-area">
-                                            {mlResult.prediction === "Malware" || mlResult.prediction === "Uncertain (mostly Malware)"
-                                                ? (
-                                                    <div className="malware-icon" />
-                                                ) : (
-                                                    <div className="legitimate-icon" />
-                                                )}
-                                            <p className={
-                                                mlResult.prediction === "Malware" || mlResult.prediction === "Uncertain (mostly Malware)"
-                                                    ? "malware-text"
-                                                    : "legitimate-text"
-                                            }>File is {mlResult.prediction}</p>
-                                        </div>
-                                        <p className="description-text">
-                                            If the prediction percentage values are close to 100%, it indicates
-                                            that the file is a malware.
-                                            <br />
-                                            Conversely, if the probability and prediction values are below 85%, it
-                                            indicates that the file is not a malware and is a legitimate file.
-                                        </p>
-                                    </div>
-                                    <div className="center-divider"></div>
-                                    <div className="percentage-values-area">
-                                        <div className="rf-model-value-box">
-                                            <div className="single-chart">
-                                                <svg viewBox="0 0 36 36" className="circular-chart blue">
-                                                    <path className="circle-bg"
-                                                        d="M18 2.0845
-                                                        a 15.9155 15.9155 0 0 1 0 31.831
-                                                        a 15.9155 15.9155 0 0 1 0 -31.831"
-                                                    />
-                                                    <path
-                                                        className="circle"
-                                                        stroke={getStrokeColor(mlResult.rf_probability)}
-                                                        strokeDasharray={calculateStrokeDasharray(mlResult.rf_probability)}
-                                                        d="M18 2.0845
-                                                        a 15.9155 15.9155 0 0 1 0 31.831
-                                                        a 15.9155 15.9155 0 0 1 0 -31.831"
-                                                    />
-                                                    <text x="18" y="20.35" className="percentage">{mlResult.rf_probability}</text>
-                                                </svg>
-                                            </div>
-                                            <p className="rf-text">Random Forest Model</p>
-                                        </div>
-                                        <div className="nn-model-value-box">
-                                            <div className="single-chart">
-                                                <svg viewBox="0 0 36 36" className="circular-chart blue">
-                                                    <path className="circle-bg"
-                                                        d="M18 2.0845
-                                                        a 15.9155 15.9155 0 0 1 0 31.831
-                                                        a 15.9155 15.9155 0 0 1 0 -31.831"
-                                                    />
-                                                    <path
-                                                        className="circle"
-                                                        stroke={getStrokeColor(mlResult.nn_prediction)}
-                                                        strokeDasharray={calculateStrokeDasharray(mlResult.nn_prediction)}
-                                                        d="M18 2.0845
-                                                        a 15.9155 15.9155 0 0 1 0 31.831
-                                                        a 15.9155 15.9155 0 0 1 0 -31.831"
-                                                    />
-                                                    <text x="18" y="20.35" className="percentage">{mlResult.nn_prediction}</text>
-                                                </svg>
-                                            </div>
-                                            <p className="nn-text">Neural Network Model</p>
-                                        </div>
-                                    </div>
+                            {mlResult && mlResult.prediction === "Error occurred while processing the file" ? (
+                                <div className='error-container'>
+                                    <span className='error-icon' />
+                                    <p className='error-message-text'>{mlResult.prediction}</p>
                                 </div>
-                            )}
+                            ) : (
+                                mlResult && (
+                                    <div className="ml-result">
+                                        <div className="prediction-description">
+                                            <div className="legitimate-icon-text-area">
+                                                {mlResult.prediction === "Malware" || mlResult.prediction === "Uncertain (mostly Malware)"
+                                                    ? (
+                                                        <div className="malware-icon" />
+                                                    ) : (
+                                                        <div className="legitimate-icon" />
+                                                    )}
+                                                <p className={
+                                                    mlResult.prediction === "Malware" || mlResult.prediction === "Uncertain (mostly Malware)"
+                                                        ? "malware-text"
+                                                        : "legitimate-text"
+                                                }>File is {mlResult.prediction}</p>
+                                            </div>
+                                            <p className="description-text">
+                                                If the prediction percentage values are close to 100%, it indicates
+                                                that the file is a malware.
+                                                <br />
+                                                Conversely, if the probability and prediction values are below 85%, it
+                                                indicates that the file is not a malware and is a legitimate file.
+                                            </p>
+                                        </div>
+                                        <div className="center-divider"></div>
+                                        <div className="percentage-values-area">
+                                            <div className="rf-model-value-box">
+                                                <div className="single-chart">
+                                                    <svg viewBox="0 0 36 36" className="circular-chart blue">
+                                                        <path className="circle-bg"
+                                                            d="M18 2.0845
+                                                        a 15.9155 15.9155 0 0 1 0 31.831
+                                                        a 15.9155 15.9155 0 0 1 0 -31.831"
+                                                        />
+                                                        <path
+                                                            className="circle"
+                                                            stroke={getStrokeColor(mlResult.rf_probability)}
+                                                            strokeDasharray={calculateStrokeDasharray(mlResult.rf_probability)}
+                                                            d="M18 2.0845
+                                                        a 15.9155 15.9155 0 0 1 0 31.831
+                                                        a 15.9155 15.9155 0 0 1 0 -31.831"
+                                                        />
+                                                        <text x="18" y="20.35" className="percentage">{mlResult.rf_probability}</text>
+                                                    </svg>
+                                                </div>
+                                                <p className="rf-text">Random Forest Model</p>
+                                            </div>
+                                            <div className="nn-model-value-box">
+                                                <div className="single-chart">
+                                                    <svg viewBox="0 0 36 36" className="circular-chart blue">
+                                                        <path className="circle-bg"
+                                                            d="M18 2.0845
+                                                        a 15.9155 15.9155 0 0 1 0 31.831
+                                                        a 15.9155 15.9155 0 0 1 0 -31.831"
+                                                        />
+                                                        <path
+                                                            className="circle"
+                                                            stroke={getStrokeColor(mlResult.nn_prediction)}
+                                                            strokeDasharray={calculateStrokeDasharray(mlResult.nn_prediction)}
+                                                            d="M18 2.0845
+                                                        a 15.9155 15.9155 0 0 1 0 31.831
+                                                        a 15.9155 15.9155 0 0 1 0 -31.831"
+                                                        />
+                                                        <text x="18" y="20.35" className="percentage">{mlResult.nn_prediction}</text>
+                                                    </svg>
+                                                </div>
+                                                <p className="nn-text">Neural Network Model</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
                         </div>
                     </div>
                     <AboutTheProject />
