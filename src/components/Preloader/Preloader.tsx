@@ -3,7 +3,7 @@ import './Preloader.css';
 
 const Preloader: React.FC = () => {
     return (
-        <div className="preloader">
+        <div className="preloader" data-testid="preloader">
             <div className="malditectist-logo-icon" />
             <div className="pre-spinner">
                 <span></span>
