@@ -4,8 +4,11 @@ import './Preloader.css';
 const Preloader: React.FC = () => {
     return (
         <div className="preloader">
-            <div className="spinner-box">
-                <div className="spinner" />
+            <div className="malditectist-logo-icon" />
+            <div className="pre-spinner">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
     );
