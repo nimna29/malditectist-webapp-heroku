@@ -53,7 +53,7 @@ const FileUpload = () => {
 
 
     return (
-        <>
+        <div data-testid="file-upload">
             <div className='page-content'>
                 <CustomMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
                 <nav>
@@ -238,7 +238,7 @@ const FileUpload = () => {
                 </div>
             </div>
             <Footer />
-        </>
+        </div>
     );
 };
 
