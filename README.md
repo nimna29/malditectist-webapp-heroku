@@ -16,4 +16,4 @@ Check out the [MalDitectist](https://www.malditectist.com/)
 This project is licensed under the MIT License. See [LICENSE](https://github.com/nimna29/malditectist-webapp-heroku/blob/main/LICENSE) for more details.
 
 ### `Feedback`
-Provide feedback a [Feedback](https://forms.gle/KopaHvcjFH5cYV988).
+Provide a [Feedback](https://forms.gle/KopaHvcjFH5cYV988).
