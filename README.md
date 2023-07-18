@@ -12,6 +12,9 @@
 ## `Live Web App`
 Check out the [MalDitectist](https://www.malditectist.com/)
 
+## `Model Development Repo`
+Check out the [Model Development](https://github.com/nimna29/MalDitectist)
+
 ### `License`
 This project is licensed under the MIT License. See [LICENSE](https://github.com/nimna29/malditectist-webapp-heroku/blob/main/LICENSE) for more details.
 
