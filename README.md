@@ -62,12 +62,18 @@ source venv/bin/activate
 ```
 ##### Using conda (if you have Anaconda or Miniconda installed):
 
-```
+```bash
+# Navigate to your project directory
+cd /path/to/your/project
+
 # Create a conda environment with Python 3.9
-conda create --name my-env python=3.9
+conda create --name my-env
 
 # Activate the conda environment
 conda activate my-env
+
+# For deactivate the conda environment
+conda deactivate my-env
 ```
 
 ### 2. Install Python Dependencies
@@ -87,12 +93,12 @@ npm install
 
 ### 5. Run the Project
 Now, you can start both the Python backend and the Node.js frontend in separate terminals.
-- Start the Django development server
+- Terminal 1: Start the Django development server
 ```
 python manage.py runserver
 ```
 
-- Start the React development server
+- Terminal 2: Start the React development server
 ```
 npm start
 ```
