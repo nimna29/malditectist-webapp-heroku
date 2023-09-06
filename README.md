@@ -29,6 +29,13 @@ Before you begin, ensure you have met the following requirements:
 
 - Python 3.9 or above installed
 - Node.js and npm (Node Package Manager) installed
+  
+  ```
+      "engines": {
+        "node": "18.17.1",
+        "npm": "10.0.0"
+    },
+  ```
 
 ## Setup Instructions
 
