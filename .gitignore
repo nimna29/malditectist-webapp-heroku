@@ -7,6 +7,7 @@ env_heroku_storage01_config
 env_3ba37_config
 env_storage01_config
 env_malditectist_dev_storage_config
+maldi-web
 
 
 ## Ignore Visual Studio temporary files, build results, and
