@@ -58,14 +58,20 @@ It's recommended to create a virtual environment to isolate project dependencies
 cd /path/to/your/project
 
 # Create a virtual environment
-python -m venv venv
+python -m venv <venv_name>
 
 # Activate the virtual environment
 # On Windows:
-venv\Scripts\activate
+<venv_name>\Scripts\activate
 
 # On macOS and Linux:
-source venv/bin/activate
+source <venv_name>/bin/activate
+
+# On bash:
+source <venv_name>/Scripts/activate
+
+# For Deactivate:
+deactivate
 ```
 ##### Using conda (if you have Anaconda or Miniconda installed):
 
@@ -74,13 +80,13 @@ source venv/bin/activate
 cd /path/to/your/project
 
 # Create a conda environment with Python 3.9
-conda create --name my-env
+conda create --name <venv_name>
 
 # Activate the conda environment
-conda activate my-env
+conda activate <venv_name>
 
 # For deactivate the conda environment
-conda deactivate my-env
+conda deactivate <venv_name>
 ```
 
 ### 2. Install Python Dependencies
@@ -97,8 +103,37 @@ Install the Node.js packages required for your project:
 ```
 npm install
 ```
+### 5. Setting Up Environment Variables
+To configure your project, you'll need to set up environment variables. These variables are typically stored in a `.env` file. Follow these steps to set them up:
 
-### 5. Run the Project
+#### 5.1. Python Installation:
+Create the `.env` File:
+- Rename the `env.example` file in your project directory to `.env`.
+#### 5.2 Add Environment Variables:
+- Open the `.env` file and set the following variables with your actual values:
+```plaintext
+FIREBASE_STORAGE_BUCKET=<Your Firebase Storage Bucket>
+FIREBASE_PROJECT_ID=<Your Firebase Project ID>
+FIREBASE_PRIVATE_KEY_ID=<Your Firebase Private Key ID>
+FIREBASE_PRIVATE_KEY=<Your Firebase Private Key>
+FIREBASE_CLIENT_EMAIL=<Your Firebase Client Email>
+FIREBASE_CLIENT_ID=<Your Firebase Client ID>
+FIREBASE_AUTH_URI=<Your Firebase Auth URI>
+FIREBASE_TOKEN_URI=<Your Firebase Token URI>
+FIREBASE_AUTH_PROVIDER_CERT_URL=<Your Firebase Auth Provider Cert URL>
+FIREBASE_CLIENT_CERT_URL=<Your Firebase Client Cert URL>
+
+MAX_WORKERS=<The maximum number of concurrent threads that can be simultaneously processed>
+REACT_APP_FILE_SIZE_LIMIT=<Small file size limit>
+REACT_APP_UPLOAD_FILE_SIZE_LIMIT=<Application-supported max file size upload limit>
+DJANGO_SECRET_KEY=<Your Django Secret Key>
+DJANGO_DEBUG=<true or false>
+```
+#### 5.3 Save and Use:
+- Save the .env file, and your project will now use these environment variables for configuration.
+- Note: Be careful not to share or commit your .env file with sensitive information to version control systems like Git.
+
+### 6. Run the Project
 Now, you can start both the Python backend and the Node.js frontend in separate terminals.
 - Terminal 1: Start the Django development server
 ```
